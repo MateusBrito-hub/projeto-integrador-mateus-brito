@@ -4,13 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SkillMatch Vagas - Portal de Empregos por Compatibilidade</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <header>
+  <header id="cabecalho-principal">
     <div role="status" aria-live="polite" id="aviso-match">
       <p>
         <strong>Dica SkillMatch:</strong> Vagas em que você possui mais de <strong>70% das skills solicitadas</strong> recebem recomendação automática!
-        <button type="button" id="btn-fechar-aviso" aria-label="Fechar aviso de recomendação de vagas">✕</button>
+        <button type="button" id="btn-fechar-aviso" class="botao-icone" aria-label="Fechar aviso de recomendação de vagas">✕</button>
       </p>
     </div>
 
@@ -46,9 +48,9 @@
   </header>
 
   <main>
-    <section id="secao-sobre">
+    <section id="secao-sobre" class="card">
       <h2>Funcionalidades Principais do Portal</h2>
-      <ul>
+      <ul class="lista-recursos">
         <li>Cadastro de vagas de emprego informando título, empresa, modalidade e lista de skills técnicas solicitadas.</li>
         <li>Cadastro de candidatos com seleção de skills dominadas para aplicação direta nas vagas abertas.</li>
         <li>Cálculo automático de percentual de compatibilidade (match) com selo de Vaga Recomendada quando o índice for maior que 70%.</li>
@@ -56,7 +58,7 @@
       </ul>
     </section>
 
-    <section id="secao-midia">
+    <section id="secao-midia" class="card">
       <h2>Tour em Vídeo: Como Funciona a Recomendação por Skills (&gt; 70%)</h2>
       <p>Assista à demonstração rápida de como o SkillMatch Vagas cruza as competências do candidato com os requisitos técnicos de cada oportunidade.</p>
 
@@ -77,10 +79,11 @@
       <p><small id="diagnostico-midia">Verificando suporte de codecs no navegador via canPlayType()...</small></p>
     </section>
 
-    <section id="secao-graficos">
+    <section id="secao-graficos" class="card">
       <h2>Painel Visual de Compatibilidade (SVG Inline e Canvas 2D)</h2>
 
-      <div>
+      <div class="destaque">
+        <img src="assets/images/poster-video-match.svg" alt="Capa ilustrativa da vaga em destaque com recomendação acima de 70%" class="imagem-capa-destaque">
         <h3>Selo Oficial de Recomendação (&gt; 70% Match) em SVG Inline</h3>
         <svg viewBox="0 0 280 90" width="280" height="90" role="img" aria-labelledby="titulo-selo-recomendacao">
           <title id="titulo-selo-recomendacao">Selo Vaga Recomendada: Compatibilidade de Skills superior a 70%</title>
@@ -115,9 +118,9 @@
       </div>
     </section>
 
-    <section id="secao-vagas">
+    <section id="secao-vagas" class="card">
       <h2>Quadro de Vagas Abertas e Requisitos de Skills</h2>
-      <table border="1">
+      <table class="tabela-vagas">
         <thead>
           <tr>
             <th scope="col">Vaga</th>
@@ -149,33 +152,33 @@
       </table>
     </section>
 
-    <section id="secao-cadastro-vaga">
+    <section id="secao-cadastro-vaga" class="card">
       <h2>Cadastrar Nova Vaga de Emprego</h2>
       <form id="form-cadastro-vaga" action="#" method="post">
         <fieldset>
           <legend>Dados da Oportunidade</legend>
 
-          <div>
+          <div class="campo-form">
             <label for="vaga-titulo">Título da Vaga *</label>
             <input type="text" id="vaga-titulo" name="vagaTitulo" required minlength="4" placeholder="Ex: Desenvolvedor(a) Front-end">
           </div>
 
-          <div>
+          <div class="campo-form">
             <label for="vaga-empresa">Empresa Contratante *</label>
             <input type="text" id="vaga-empresa" name="vagaEmpresa" required minlength="2" placeholder="Ex: TechNova Solutions">
           </div>
 
-          <div>
+          <div class="campo-form">
             <label for="vaga-email-rh">E-mail do Recrutador *</label>
             <input type="email" id="vaga-email-rh" name="vagaEmailRh" required placeholder="talentos@empresa.com.br">
           </div>
 
-          <div>
+          <div class="campo-form">
             <label for="vaga-salario">Remuneração Mensal Estimada (R$) *</label>
             <input type="number" id="vaga-salario" name="vagaSalario" required min="1500" max="50000" step="100" placeholder="4500">
           </div>
 
-          <div>
+          <div class="campo-form">
             <label for="vaga-nivel">Nível de Senioridade *</label>
             <select id="vaga-nivel" name="vagaNivel" required>
               <option value="">Selecione o nível...</option>
@@ -190,15 +193,15 @@
 
         <fieldset>
           <legend>Modalidade de Trabalho</legend>
-          <div>
+          <div class="opcoes-inline">
             <input type="radio" id="modalidade-remoto" name="vagaModalidade" value="Remoto" checked>
             <label for="modalidade-remoto">100% Remoto</label>
           </div>
-          <div>
+          <div class="opcoes-inline">
             <input type="radio" id="modalidade-hibrido" name="vagaModalidade" value="Hibrido">
             <label for="modalidade-hibrido">Híbrido</label>
           </div>
-          <div>
+          <div class="opcoes-inline">
             <input type="radio" id="modalidade-presencial" name="vagaModalidade" value="Presencial">
             <label for="modalidade-presencial">Presencial</label>
           </div>
@@ -206,76 +209,76 @@
 
         <fieldset>
           <legend>Skills Solicitadas para a Vaga (base para o cálculo &gt; 70%)</legend>
-          <div>
+          <div class="opcoes-inline">
             <input type="checkbox" id="vaga-skill-html" name="vagaSkills" value="HTML5" checked>
             <label for="vaga-skill-html">HTML5</label>
           </div>
-          <div>
+          <div class="opcoes-inline">
             <input type="checkbox" id="vaga-skill-css" name="vagaSkills" value="CSS3" checked>
             <label for="vaga-skill-css">CSS3</label>
           </div>
-          <div>
+          <div class="opcoes-inline">
             <input type="checkbox" id="vaga-skill-js" name="vagaSkills" value="JavaScript" checked>
             <label for="vaga-skill-js">JavaScript</label>
           </div>
-          <div>
+          <div class="opcoes-inline">
             <input type="checkbox" id="vaga-skill-git" name="vagaSkills" value="Git" checked>
             <label for="vaga-skill-git">Git</label>
           </div>
-          <div>
+          <div class="opcoes-inline">
             <input type="checkbox" id="vaga-skill-react" name="vagaSkills" value="React">
             <label for="vaga-skill-react">React</label>
           </div>
-          <div>
+          <div class="opcoes-inline">
             <input type="checkbox" id="vaga-skill-ts" name="vagaSkills" value="TypeScript">
             <label for="vaga-skill-ts">TypeScript</label>
           </div>
-          <div>
+          <div class="opcoes-inline">
             <input type="checkbox" id="vaga-skill-a11y" name="vagaSkills" value="Acessibilidade">
             <label for="vaga-skill-a11y">Acessibilidade</label>
           </div>
-          <div>
+          <div class="opcoes-inline">
             <input type="checkbox" id="vaga-skill-sql" name="vagaSkills" value="SQL">
             <label for="vaga-skill-sql">SQL</label>
           </div>
         </fieldset>
 
-        <button type="submit" id="btn-publicar-vaga">Publicar Vaga no Portal</button>
+        <button type="submit" id="btn-publicar-vaga" class="botao">Publicar Vaga no Portal</button>
       </form>
     </section>
 
-    <section id="secao-candidatura">
+    <section id="secao-candidatura" class="card">
       <h2>Cadastro de Candidato e Aplicação por Compatibilidade de Skills</h2>
       <form id="form-candidato" action="#" method="post">
         <fieldset>
           <legend>Dados Pessoais e Contato do Candidato</legend>
 
-          <div>
+          <div class="campo-form">
             <label for="cand-nome">Nome Completo *</label>
             <input type="text" id="cand-nome" name="candNome" required minlength="3" placeholder="Ex: Mateus Brito">
           </div>
 
-          <div>
+          <div class="campo-form">
             <label for="cand-email">E-mail para Contato *</label>
             <input type="email" id="cand-email" name="candEmail" required placeholder="mateus@email.com">
           </div>
 
-          <div>
+          <div class="campo-form">
             <label for="cand-telefone">Telefone / WhatsApp (formato DDD + número) *</label>
             <input type="tel" id="cand-telefone" name="candTelefone" required pattern="^\(?\d{2}\)?\s?\d{4,5}-?\d{4}$" placeholder="(11) 98765-4321">
           </div>
 
-          <div>
+          <div class="campo-form">
             <label for="cand-portfolio">URL do Portfólio ou GitHub *</label>
             <input type="url" id="cand-portfolio" name="candPortfolio" required placeholder="https://github.com/seu-usuario">
           </div>
 
-          <div>
+          <div class="campo-form">
             <label for="cand-experiencia">Anos de Experiência na Área *</label>
             <input type="number" id="cand-experiencia" name="candExperiencia" required min="0" max="40" value="1">
           </div>
 
-          <div>
+          <div class="campo-form">
             <label for="cand-area">Área Principal de Interesse *</label>
             <select id="cand-area" name="candArea" required>
               <option value="">Escolha uma área...</option>
@@ -290,15 +293,15 @@
 
         <fieldset>
           <legend>Preferência de Contratação</legend>
-          <div>
+          <div class="opcoes-inline">
             <input type="radio" id="regime-clt" name="candRegime" value="CLT" checked>
             <label for="regime-clt">CLT</label>
           </div>
-          <div>
+          <div class="opcoes-inline">
             <input type="radio" id="regime-pj" name="candRegime" value="PJ">
             <label for="regime-pj">Pessoa Jurídica (PJ)</label>
           </div>
-          <div>
+          <div class="opcoes-inline">
             <input type="radio" id="regime-estagio" name="candRegime" value="Estagio">
             <label for="regime-estagio">Estágio / Trainee</label>
           </div>
@@ -306,41 +309,41 @@
 
         <fieldset>
           <legend>Suas Skills Técnicas (comparadas com as vagas para recomendação &gt; 70%)</legend>
-          <div>
+          <div class="opcoes-inline">
             <input type="checkbox" id="cand-skill-html" name="candSkills" value="HTML5" checked>
             <label for="cand-skill-html">HTML5</label>
           </div>
-          <div>
+          <div class="opcoes-inline">
             <input type="checkbox" id="cand-skill-css" name="candSkills" value="CSS3" checked>
             <label for="cand-skill-css">CSS3</label>
           </div>
-          <div>
+          <div class="opcoes-inline">
             <input type="checkbox" id="cand-skill-js" name="candSkills" value="JavaScript" checked>
             <label for="cand-skill-js">JavaScript</label>
           </div>
-          <div>
+          <div class="opcoes-inline">
             <input type="checkbox" id="cand-skill-git" name="candSkills" value="Git" checked>
             <label for="cand-skill-git">Git</label>
           </div>
-          <div>
+          <div class="opcoes-inline">
             <input type="checkbox" id="cand-skill-react" name="candSkills" value="React">
             <label for="cand-skill-react">React</label>
           </div>
-          <div>
+          <div class="opcoes-inline">
             <input type="checkbox" id="cand-skill-ts" name="candSkills" value="TypeScript">
             <label for="cand-skill-ts">TypeScript</label>
           </div>
-          <div>
+          <div class="opcoes-inline">
             <input type="checkbox" id="cand-skill-a11y" name="candSkills" value="Acessibilidade" checked>
             <label for="cand-skill-a11y">Acessibilidade</label>
           </div>
-          <div>
+          <div class="opcoes-inline">
             <input type="checkbox" id="cand-skill-sql" name="candSkills" value="SQL">
             <label for="cand-skill-sql">SQL</label>
           </div>
         </fieldset>
 
-        <button type="submit" id="btn-avaliar-candidatura">Cadastrar Candidato e Verificar Vagas Recomendadas (&gt;70%)</button>
+        <button type="submit" id="btn-avaliar-candidatura" class="botao">Cadastrar Candidato e Verificar Vagas Recomendadas (&gt;70%)</button>
       </form>
     </section>
   </main>
