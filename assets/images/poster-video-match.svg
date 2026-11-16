@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 405" width="720" height="405">
+  <rect width="720" height="405" rx="14" fill="#0f172a" />
+  <rect x="24" y="24" width="672" height="357" rx="10" fill="#1e293b" stroke="#334155" stroke-width="2" />
+  <circle cx="360" cy="185" r="46" fill="#10b981" />
+  <polygon points="346,162 346,208 386,185" fill="#064e3b" />
+  <text x="360" y="275" text-anchor="middle" fill="#f8fafc" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="bold">Tour Guiado: Como funciona o Match &gt; 70%</text>
+  <text x="360" y="310" text-anchor="middle" fill="#94a3b8" font-family="Segoe UI, Arial, sans-serif" font-size="16">Veja na prática a comparação entre skills da vaga e skills do candidato</text>
+</svg>
