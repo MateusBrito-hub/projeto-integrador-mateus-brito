@@ -20,6 +20,7 @@
     <nav aria-label="Navegação principal">
       <ul>
         <li><a href="#secao-sobre">Como Funciona</a></li>
+        <li><a href="#secao-midia">Tour em Vídeo</a></li>
         <li><a href="#secao-vagas">Quadro de Vagas</a></li>
         <li><a href="#secao-cadastro-vaga">Cadastrar Vaga</a></li>
         <li><a href="#secao-candidatura">Candidatar-se e Testar Match</a></li>
@@ -39,6 +40,27 @@
         <li>Cálculo automático de percentual de compatibilidade (match) com selo de Vaga Recomendada quando o índice for maior que 70%.</li>
         <li>Filtros inteligentes por nível de senioridade, modalidade de trabalho e percentual de aderência.</li>
       </ul>
+    </section>
+
+    <section id="secao-midia">
+      <h2>Tour em Vídeo: Como Funciona a Recomendação por Skills (&gt; 70%)</h2>
+      <p>Assista à demonstração rápida de como o SkillMatch Vagas cruza as competências do candidato com os requisitos técnicos de cada oportunidade.</p>
+
+      <!--
+        Justificativa de preload="none" (Seção 6.1):
+        Escolhemos preload="none" (em vez de "metadata" ou "auto") porque este vídeo demonstrativo encontra-se
+        abaixo da dobra principal da página e sua reprodução é opcional. Com preload="none", o navegador não
+        baixa nenhum byte do fluxo de vídeo no carregamento inicial (exibindo apenas a imagem leve do atributo poster),
+        economizando dados móveis e largura de banda do visitante até que ele decida iniciar a reprodução.
+      -->
+      <video id="video-tour-match" controls preload="none" poster="assets/images/poster-video-match.svg" width="720" height="405">
+        <source src="assets/media/guia-skillmatch.webm" type='video/webm; codecs="vp9, opus"'>
+        <source src="assets/media/guia-skillmatch.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
+        <track kind="subtitles" src="assets/media/legendas-match.vtt" srclang="pt-BR" label="Português (Brasil)" default>
+        <p>Seu navegador não suporta a reprodução nativa de vídeo HTML5. Você pode baixar o vídeo em <a href="assets/media/guia-skillmatch.mp4">formato MP4</a>.</p>
+      </video>
+
+      <p><small id="diagnostico-midia">Verificando suporte de codecs no navegador via canPlayType()...</small></p>
     </section>
 
     <section id="secao-vagas">
@@ -279,5 +301,27 @@
       ou acesse a página <a href="sobre.html">Sobre o SkillMatch Vagas</a>.
     </p>
   </footer>
+
+  <script>
+    (function verificarFormatosMidia() {
+      const video = document.getElementById('video-tour-match');
+      const saida = document.getElementById('diagnostico-midia');
+      if (!video || !saida) return;
+
+      const mimeWebm = 'video/webm; codecs="vp9, opus"';
+      const mimeMp4 = 'video/mp4; codecs="avc1.42E01E, mp4a.40.2"';
+      const suporteWebm = video.canPlayType(mimeWebm);
+      const suporteMp4 = video.canPlayType(mimeMp4);
+
+      let escolhido = 'nenhum formato detectado';
+      if (suporteWebm === 'probably' || suporteWebm === 'maybe') {
+        escolhido = 'WebM (VP9/Opus) [' + suporteWebm + ']';
+      } else if (suporteMp4 === 'probably' || suporteMp4 === 'maybe') {
+        escolhido = 'MP4 (H.264/AAC) [' + suporteMp4 + ']';
+      }
+
+      saida.textContent = 'Diagnóstico canPlayType(): WebM="' + suporteWebm + '", MP4="' + suporteMp4 + '" — Formato selecionado pelo navegador: ' + escolhido + '.';
+    })();
+  </script>
 </body>
 </html>
