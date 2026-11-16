@@ -490,3 +490,121 @@ footer a:visited {
   color: var(--cor-primaria);
 }
 
+/* ==========================================================================
+   Aula 11: Classes Visuais de Faixas de Compatibilidade e Resultado no DOM
+   ========================================================================== */
+.resumo-painel {
+  background-color: var(--cor-primaria);
+  color: var(--cor-superficie);
+  padding: var(--espacamento-base);
+  border-radius: var(--raio-borda);
+  border-left: 6px solid var(--cor-destaque);
+  margin: var(--espacamento-base) 0;
+  font-size: 1rem;
+}
+
+.resumo-painel p {
+  margin-bottom: 0.35rem;
+}
+
+.lista-resultados-dom {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--espacamento-base);
+  margin-top: var(--espacamento-base);
+}
+
+.card-resultado-dom {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: var(--espacamento-base);
+  border-radius: var(--raio-borda);
+  border: 2px solid var(--cor-borda);
+  background-color: var(--cor-superficie);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-resultado-dom:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.12);
+}
+
+/* Passo 8 (Aula 11): Classes aplicadas via classList.add conforme a faixa de compatibilidade */
+.faixa-recomendada {
+  background-color: #ecfdf5;
+  border-color: var(--cor-destaque);
+}
+
+.faixa-parcial {
+  background-color: #fffbeb;
+  border-color: var(--cor-alerta);
+}
+
+.faixa-baixa {
+  background-color: #fef2f2;
+  border-color: #ef4444;
+}
+
+.badge-faixa {
+  display: inline-block;
+  align-self: flex-start;
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  margin-bottom: 0.5rem;
+}
+
+.faixa-recomendada .badge-faixa {
+  background-color: var(--cor-destaque-escura);
+  color: var(--cor-superficie);
+}
+
+.faixa-parcial .badge-faixa {
+  background-color: var(--cor-alerta);
+  color: var(--cor-primaria);
+}
+
+.faixa-baixa .badge-faixa {
+  background-color: #b91c1c;
+  color: var(--cor-superficie);
+}
+
+.btn-aplicar-vaga {
+  margin-top: var(--espacamento-pequeno);
+  font-size: 0.95rem;
+  font-weight: 700;
+  padding: 0.55rem 1rem;
+  border-radius: 0.45rem;
+  border: 1px solid var(--cor-primaria);
+  background-color: var(--cor-primaria);
+  color: var(--cor-superficie);
+  cursor: pointer;
+}
+
+.btn-aplicar-vaga:hover {
+  background-color: var(--cor-secundaria);
+}
+
+.btn-aplicado {
+  background-color: var(--cor-destaque-escura);
+  border-color: var(--cor-destaque-escura);
+  color: var(--cor-superficie);
+}
+
+.agrupamento-categorias {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--espacamento-pequeno);
+  margin-top: var(--espacamento-pequeno);
+}
+
+.bloco-categoria {
+  background-color: var(--cor-fundo);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-borda);
+  padding: var(--espacamento-pequeno) var(--espacamento-base);
+}
+
+

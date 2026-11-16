@@ -60,7 +60,8 @@
         <li class="tem-dropdown">
           <a href="#secao-grade-vagas" aria-haspopup="true">Vagas &amp; Match ▾</a>
           <ul class="dropdown-menu" aria-label="Submenu de Vagas e Compatibilidade">
-            <li><a href="#secao-grade-vagas">Oportunidades Recomendadas (&gt;70%)</a></li>
+            <li><a href="#resultado">Painel de Recomendações (&gt;70%)</a></li>
+            <li><a href="#secao-grade-vagas">Oportunidades em Destaque</a></li>
             <li><a href="#secao-vagas">Tabela de Skills por Vaga</a></li>
             <li><a href="#secao-cadastro-vaga">Cadastrar Nova Vaga</a></li>
             <li><a href="#secao-candidatura">Candidatar-se e Comparar Skills</a></li>
@@ -416,6 +417,11 @@
         <button type="submit" id="btn-avaliar-candidatura" class="botao">Cadastrar Candidato e Verificar Vagas Recomendadas (&gt;70%)</button>
       </form>
     </section>
+
+    <section id="resultado" class="card" aria-live="polite">
+      <h2>Resultado da Análise de Compatibilidade e Recomendação (&gt; 70%)</h2>
+      <p>Carregando análise dinâmica de vagas e compatibilidade de skills...</p>
+    </section>
   </main>
 
   <footer>
@@ -563,5 +569,6 @@
     })();
   </script>
   <script src="js/logica.js" defer></script>
+  <script src="js/script.js" defer></script>
 </body>
 </html>
