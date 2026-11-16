@@ -32,9 +32,10 @@
     </h1>
     <p>Portal inteligente de vagas de emprego que compara as skills exigidas pelas empresas com as competências do candidato e recomenda oportunidades com compatibilidade superior a 70%.</p>
 
-    <nav aria-label="Navegação principal">
-      <ul>
+    <nav aria-label="Navegação principal" class="navbar-principal">
+      <ul class="menu-flex">
         <li><a href="#secao-sobre">Como Funciona</a></li>
+        <li><a href="#secao-grade-vagas">Cards de Vagas</a></li>
         <li><a href="#secao-midia">Tour em Vídeo</a></li>
         <li><a href="#secao-graficos">Painel Gráfico (SVG &amp; Canvas)</a></li>
         <li><a href="#secao-vagas">Quadro de Vagas</a></li>
@@ -56,6 +57,45 @@
         <li>Cálculo automático de percentual de compatibilidade (match) com selo de Vaga Recomendada quando o índice for maior que 70%.</li>
         <li>Filtros inteligentes por nível de senioridade, modalidade de trabalho e percentual de aderência.</li>
       </ul>
+    </section>
+
+    <section id="secao-grade-vagas" class="card">
+      <h2>Oportunidades em Destaque (Grade Responsiva CSS Grid)</h2>
+      <p>Confira as vagas em aberto e a compatibilidade com o perfil padrão de candidato Front-end (Recomendação automática quando &gt; 70%):</p>
+
+      <div class="grade-vagas">
+        <article class="card-vaga">
+          <span class="tag-match">80% Match — Recomendada (&gt;70%)</span>
+          <h3>Desenvolvedor(a) Front-end Júnior</h3>
+          <p><strong>Empresa:</strong> TechNova Solutions (100% Remoto)</p>
+          <p><strong>Skills Solicitadas:</strong> HTML5, CSS3, JavaScript, Git, Acessibilidade</p>
+          <p><strong>Salário:</strong> R$ 4.200,00</p>
+        </article>
+
+        <article class="card-vaga">
+          <span class="tag-match">83% Match — Recomendada (&gt;70%)</span>
+          <h3>Engenheiro(a) Front-end Pleno</h3>
+          <p><strong>Empresa:</strong> InovaWeb Brasil (Híbrido)</p>
+          <p><strong>Skills Solicitadas:</strong> HTML5, CSS3, JavaScript, Git, Acessibilidade, React</p>
+          <p><strong>Salário:</strong> R$ 7.500,00</p>
+        </article>
+
+        <article class="card-vaga">
+          <span class="tag-match">75% Match — Recomendada (&gt;70%)</span>
+          <h3>Especialista em Interfaces Acessíveis</h3>
+          <p><strong>Empresa:</strong> Portal Inclusivo Tech (100% Remoto)</p>
+          <p><strong>Skills Solicitadas:</strong> HTML5, CSS3, Acessibilidade, Design System</p>
+          <p><strong>Salário:</strong> R$ 8.200,00</p>
+        </article>
+
+        <article class="card-vaga">
+          <span class="tag-match">60% Match — Abaixo de 70%</span>
+          <h3>Analista de UI/UX &amp; Front-end</h3>
+          <p><strong>Empresa:</strong> Studio Digital Pulse (Remoto)</p>
+          <p><strong>Skills Solicitadas:</strong> HTML5, CSS3, Acessibilidade, Figma, Pesquisa UX</p>
+          <p><strong>Salário:</strong> R$ 5.800,00</p>
+        </article>
+      </div>
     </section>
 
     <section id="secao-midia" class="card">
