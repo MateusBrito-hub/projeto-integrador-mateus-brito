@@ -280,3 +280,105 @@ footer a:link,
 footer a:visited {
   color: #38bdf8;
 }
+
+/* ==========================================================================
+   Aula 07: Flexbox, CSS Grid e Pseudo-classes Estruturais
+   ========================================================================== */
+
+/* Passo 1: Barra de navegação com Flexbox e estados interativos (:hover e :focus-visible) */
+.navbar-principal {
+  margin: var(--espacamento-base) 0;
+}
+
+.menu-flex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  list-style: none;
+  padding: 0;
+}
+
+.menu-flex a:link,
+.menu-flex a:visited {
+  display: inline-block;
+  padding: 0.5rem 0.95rem;
+  background-color: #1e293b;
+  color: var(--cor-superficie);
+  text-decoration: none;
+  border-radius: 0.45rem;
+  border: 1px solid #334155;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.menu-flex a:hover,
+.menu-flex a:focus-visible {
+  background-color: var(--cor-destaque);
+  color: var(--cor-primaria);
+  border-color: var(--cor-destaque);
+  transform: translateY(-2px);
+  outline: 2px solid var(--cor-superficie);
+  outline-offset: 2px;
+}
+
+/* Passo 2: Seção de grade responsiva usando CSS Grid com repeat(auto-fit, minmax(...))
+   sem necessidade de media query */
+.grade-vagas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--espacamento-base);
+  margin-top: var(--espacamento-base);
+}
+
+/*
+   Passo 4: Animação de hover usando transform (e nunca width/height):
+   Usamos transform: translateY(-4px) scale(1.01) porque transform é processado
+   na etapa de Composite (GPU), sem disparar recálculo de Layout (Reflow) nos
+   cards vizinhos da grade, ao contrário de animar width, height ou margin.
+*/
+.card-vaga {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: var(--cor-fundo);
+  padding: var(--espacamento-base);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-borda);
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.card-vaga:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 10px 20px rgba(15, 23, 42, 0.12);
+}
+
+/* Passo 3: Uso intencional de pseudo-classes estruturais (:first-child e :last-child)
+   para diferenciar o primeiro card (Top Match em destaque) e o último card (abaixo de 70%) */
+.grade-vagas > .card-vaga:first-child {
+  background-color: #ecfdf5;
+  border: 2px solid var(--cor-destaque);
+}
+
+.grade-vagas > .card-vaga:last-child {
+  background-color: #fffbeb;
+  border: 1px dashed var(--cor-alerta);
+}
+
+.tag-match {
+  display: inline-block;
+  align-self: flex-start;
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  background-color: var(--cor-destaque-escura);
+  color: var(--cor-superficie);
+  margin-bottom: 0.5rem;
+}
+
+.grade-vagas > .card-vaga:last-child .tag-match {
+  background-color: var(--cor-alerta);
+  color: var(--cor-primaria);
+}
+
