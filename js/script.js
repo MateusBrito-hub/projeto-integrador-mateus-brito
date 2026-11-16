@@ -589,6 +589,66 @@ function configurarEventosFormulariosPortal() {
       blocoAviso.hidden = true;
     });
   }
+
+  // Controle interativo do botão de menu hambúrguer e links da navbar
+  const botaoHamburguer = document.querySelector('.botao-hamburguer');
+  const menuLista = document.querySelector('#menu-principal-lista');
+
+  if (botaoHamburguer !== null && menuLista !== null) {
+    // Define estado inicial coerente com a largura da janela
+    const telaEstreitaInicial = window.innerWidth <= 768;
+    botaoHamburguer.setAttribute(
+      'aria-expanded',
+      telaEstreitaInicial ? 'false' : 'true'
+    );
+    if (!telaEstreitaInicial) {
+      botaoHamburguer.classList.add('menu-ativo');
+    }
+
+    botaoHamburguer.addEventListener('click', () => {
+      const emTelaEstreita = window.innerWidth <= 768;
+      let abertoAgora = false;
+
+      if (emTelaEstreita) {
+        menuLista.classList.remove('menu-oculto');
+        abertoAgora = menuLista.classList.toggle('menu-aberto');
+      } else {
+        menuLista.classList.remove('menu-aberto');
+        const foiOcultado = menuLista.classList.toggle('menu-oculto');
+        abertoAgora = !foiOcultado;
+      }
+
+      botaoHamburguer.classList.toggle('menu-ativo', abertoAgora);
+      botaoHamburguer.setAttribute(
+        'aria-expanded',
+        abertoAgora ? 'true' : 'false'
+      );
+      botaoHamburguer.setAttribute(
+        'aria-label',
+        abertoAgora ? 'Fechar menu de navegação' : 'Abrir menu de navegação'
+      );
+    });
+
+    // Atualiza o item .ativo ao clicar nos links do menu e recolhe o menu em telas estreitas
+    const linksMenu = menuLista.querySelectorAll('a');
+    for (const link of linksMenu) {
+      link.addEventListener('click', () => {
+        for (const outroLink of linksMenu) {
+          outroLink.classList.remove('ativo');
+          outroLink.removeAttribute('aria-current');
+        }
+        link.classList.add('ativo');
+        link.setAttribute('aria-current', 'page');
+
+        if (window.innerWidth <= 768) {
+          menuLista.classList.remove('menu-aberto');
+          botaoHamburguer.classList.remove('menu-ativo');
+          botaoHamburguer.setAttribute('aria-expanded', 'false');
+          botaoHamburguer.setAttribute('aria-label', 'Abrir menu de navegação');
+        }
+      });
+    }
+  }
 }
 
 sincronizarTabelaVagasHtml();
