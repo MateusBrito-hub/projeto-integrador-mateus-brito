@@ -32,15 +32,42 @@
     </h1>
     <p>Portal inteligente de vagas de emprego que compara as skills exigidas pelas empresas com as competências do candidato e recomenda oportunidades com compatibilidade superior a 70%.</p>
 
+    <!--
+      Diagnóstico de Contexto de Empilhamento / Stacking Context (Aula 08 - Passo 5 e Desafio Extra):
+      1. Problema diagnosticado: Os cards de vaga (.card-vaga:hover) e links com propriedade CSS `transform`
+         criam novos contextos de empilhamento (stacking contexts) próprios. Sem um z-index explícito na
+         .navbar-principal (que possui position: sticky), o submenu .dropdown-menu (position: absolute)
+         poderia ser renderizado atrás de elementos transformados durante a rolagem.
+      2. Lista de Contextos de Empilhamento na página (Desafio Extra):
+         - Contexto 1 (Raiz): elemento <html> (contexto de empilhamento raiz do documento).
+         - Contexto 2 (Navbar Sticky): <nav class="navbar-principal"> (criado por position: sticky + z-index: 100).
+         - Contexto 3 (Submenu Dropdown): <ul class="dropdown-menu"> (criado por position: absolute + z-index: 110).
+         - Contexto 4 (Cards interativos no hover): elementos .card-vaga e links do menu quando recebem transform: translateY(...).
+    -->
     <nav aria-label="Navegação principal" class="navbar-principal">
-      <ul class="menu-flex">
-        <li><a href="#secao-sobre">Como Funciona</a></li>
-        <li><a href="#secao-grade-vagas">Cards de Vagas</a></li>
+      <div class="navbar-marca">
+        <a href="#cabecalho-principal" class="marca-link">SkillMatch <span>&gt;70%</span></a>
+      </div>
+
+      <button type="button" class="botao-hamburguer" aria-label="Abrir menu de navegação" aria-expanded="false" aria-controls="menu-principal-lista">
+        <span class="linha-hamburguer"></span>
+        <span class="linha-hamburguer"></span>
+        <span class="linha-hamburguer"></span>
+      </button>
+
+      <ul id="menu-principal-lista" class="menu-flex">
+        <li><a href="#secao-sobre" class="ativo" aria-current="page">Início</a></li>
+        <li class="tem-dropdown">
+          <a href="#secao-grade-vagas" aria-haspopup="true">Vagas &amp; Match ▾</a>
+          <ul class="dropdown-menu" aria-label="Submenu de Vagas e Compatibilidade">
+            <li><a href="#secao-grade-vagas">Oportunidades Recomendadas (&gt;70%)</a></li>
+            <li><a href="#secao-vagas">Tabela de Skills por Vaga</a></li>
+            <li><a href="#secao-cadastro-vaga">Cadastrar Nova Vaga</a></li>
+            <li><a href="#secao-candidatura">Candidatar-se e Comparar Skills</a></li>
+          </ul>
+        </li>
         <li><a href="#secao-midia">Tour em Vídeo</a></li>
-        <li><a href="#secao-graficos">Painel Gráfico (SVG &amp; Canvas)</a></li>
-        <li><a href="#secao-vagas">Quadro de Vagas</a></li>
-        <li><a href="#secao-cadastro-vaga">Cadastrar Vaga</a></li>
-        <li><a href="#secao-candidatura">Candidatar-se e Testar Match</a></li>
+        <li><a href="#secao-graficos">Painel Gráfico</a></li>
         <li><a href="sobre.html">Sobre o Portal</a></li>
       </ul>
     </nav>

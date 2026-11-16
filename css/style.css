@@ -282,18 +282,51 @@ footer a:visited {
 }
 
 /* ==========================================================================
-   Aula 07: Flexbox, CSS Grid e Pseudo-classes Estruturais
+   Aula 07 e Aula 08: Navbar Flexbox com Sticky, Estado .ativo, Dropdown e Hambúrguer
    ========================================================================== */
 
-/* Passo 1: Barra de navegação com Flexbox e estados interativos (:hover e :focus-visible) */
+/* Aula 08 (Passos 2 e 4): Navbar usa Flexbox para alinhar logo/marca e menu,
+   com position: sticky no topo da viewport e z-index para preservar o empilhamento */
 .navbar-principal {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--espacamento-pequeno);
+  background-color: rgba(15, 23, 42, 0.97);
+  padding: 0.75rem var(--espacamento-base);
   margin: var(--espacamento-base) 0;
+  border-radius: var(--raio-borda);
+  border: 1px solid #334155;
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.25);
+}
+
+.navbar-marca .marca-link:link,
+.navbar-marca .marca-link:visited {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--cor-superficie);
+  text-decoration: none;
+  letter-spacing: 0.02rem;
+}
+
+.navbar-marca .marca-link span {
+  color: var(--cor-destaque);
+  background-color: var(--cor-destaque-escura);
+  padding: 0.15rem 0.45rem;
+  border-radius: 0.35rem;
+  font-size: 0.9rem;
+  margin-left: 0.25rem;
 }
 
 .menu-flex {
   display: flex;
+  align-items: center;
   flex-wrap: wrap;
-  gap: 0.65rem;
+  gap: 0.5rem;
   list-style: none;
   padding: 0;
 }
@@ -312,6 +345,14 @@ footer a:visited {
   transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
 }
 
+/* Aula 08 (Passo 2): Estado .ativo aplicado ao item correspondente à seção atual */
+.menu-flex a.ativo:link,
+.menu-flex a.ativo:visited {
+  background-color: var(--cor-destaque);
+  color: var(--cor-primaria);
+  border-color: var(--cor-destaque);
+}
+
 .menu-flex a:hover,
 .menu-flex a:focus-visible {
   background-color: var(--cor-destaque);
@@ -320,6 +361,73 @@ footer a:visited {
   transform: translateY(-2px);
   outline: 2px solid var(--cor-superficie);
   outline-offset: 2px;
+}
+
+/* Aula 08 (Passo 3): Item pai com position: relative e dropdown funcional via :hover
+   sem 'buracos' (top: 100% + padding-top interno) para não fechar prematuramente */
+.tem-dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 110;
+  min-width: 270px;
+  list-style: none;
+  padding: 0.4rem;
+  margin: 0;
+  background-color: var(--cor-primaria);
+  border: 1px solid var(--cor-destaque);
+  border-radius: 0.5rem;
+  box-shadow: 0 12px 24px rgba(15, 23, 42, 0.35);
+}
+
+.tem-dropdown:hover > .dropdown-menu,
+.tem-dropdown:focus-within > .dropdown-menu {
+  display: block;
+}
+
+.dropdown-menu li {
+  margin-bottom: 0.25rem;
+}
+
+.dropdown-menu li:last-child {
+  margin-bottom: 0;
+}
+
+.dropdown-menu a:link,
+.dropdown-menu a:visited {
+  display: block;
+  width: 100%;
+  font-size: 0.9rem;
+  padding: 0.5rem 0.75rem;
+  border-color: transparent;
+}
+
+/* Aula 08 (Passo 6): Estrutura visual do botão hambúrguer para telas estreitas */
+.botao-hamburguer {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.28rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0.45rem;
+  background-color: #1e293b;
+  border: 1px solid var(--cor-destaque);
+  border-radius: 0.45rem;
+  cursor: pointer;
+}
+
+.linha-hamburguer {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: var(--cor-superficie);
+  border-radius: 2px;
 }
 
 /* Passo 2: Seção de grade responsiva usando CSS Grid com repeat(auto-fit, minmax(...))
