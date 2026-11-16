@@ -1,0 +1,282 @@
+/* ==========================================================================
+   Folha de Estilo Principal - SkillMatch Vagas (Aula 06)
+   ========================================================================== */
+
+/* Passo 2: Variáveis CSS no :root (cores, espaçamentos, raio de borda e sombra) */
+:root {
+  --cor-primaria: #0f172a;
+  --cor-secundaria: #1e3a8a;
+  --cor-destaque: #10b981;
+  --cor-destaque-escura: #065f46;
+  --cor-alerta: #f59e0b;
+  --cor-fundo: #f8fafc;
+  --cor-superficie: #ffffff;
+  --cor-texto: #1e293b;
+  --cor-texto-suave: #475569;
+  --cor-borda: #cbd5e1;
+  --espacamento-pequeno: 0.75rem;
+  --espacamento-base: 1.25rem;
+  --espacamento-grande: 2rem;
+  --raio-borda: 0.75rem;
+}
+
+/*
+   Passo 9: Justificativa do uso de rem (e nunca px) em todos os font-size:
+   Utilizamos a unidade relativa "rem" (root em) para todos os tamanhos de fonte
+   porque ela respeita a preferência de tamanho de fonte configurada pelo usuário
+   no navegador/sistema operacional, garantindo acessibilidade visual e escalabilidade
+   proporcional em toda a interface.
+*/
+html {
+  font-size: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--cor-texto);
+  background-color: var(--cor-fundo);
+}
+
+/* Passo 4: Seletor de ID para um elemento único da página (#cabecalho-principal) */
+#cabecalho-principal {
+  background-color: var(--cor-primaria);
+  color: var(--cor-superficie);
+  padding: var(--espacamento-grande) var(--espacamento-base);
+  border-bottom: 4px solid var(--cor-destaque);
+  margin-bottom: var(--espacamento-grande);
+}
+
+#cabecalho-principal h1 {
+  font-size: 2rem;
+  margin-bottom: var(--espacamento-pequeno);
+  color: var(--cor-superficie);
+}
+
+#cabecalho-principal p {
+  font-size: 1.05rem;
+  color: var(--cor-borda);
+  margin-bottom: var(--espacamento-base);
+}
+
+#aviso-match {
+  background-color: var(--cor-destaque-escura);
+  color: var(--cor-superficie);
+  padding: var(--espacamento-pequeno) var(--espacamento-base);
+  border-radius: var(--raio-borda);
+  border: 1px solid var(--cor-destaque);
+  margin-bottom: var(--espacamento-base);
+}
+
+main {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 var(--espacamento-base) var(--espacamento-grande);
+}
+
+/*
+   Passo 5: Uso intencional de combinadores (filho direto > e agrupamento ,):
+   O combinador de filho direto (main > section) foi escolhido intencionalmente para
+   aplicar o espaçamento e estilo de bloco apenas às seções de primeiro nível dentro
+   do <main>, sem afetar eventuais subseções internas no futuro.
+*/
+main > section {
+  margin-bottom: var(--espacamento-grande);
+}
+
+h2,
+h3 {
+  color: var(--cor-primaria);
+  margin-bottom: var(--espacamento-pequeno);
+}
+
+h2 {
+  font-size: 1.5rem;
+  border-left: 5px solid var(--cor-destaque);
+  padding-left: var(--espacamento-pequeno);
+}
+
+h3 {
+  font-size: 1.2rem;
+  margin-top: var(--espacamento-base);
+}
+
+/* Passo 3 e Passo 6: Seletores de classe reutilizáveis (.card, .destaque, .botao)
+   com Box Model explícito (padding, border, margin) */
+.card {
+  background-color: var(--cor-superficie);
+  padding: var(--espacamento-base);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-borda);
+  margin-bottom: var(--espacamento-base);
+}
+
+.destaque {
+  background-color: #ecfdf5;
+  border: 2px solid var(--cor-destaque);
+  padding: var(--espacamento-base);
+  border-radius: var(--raio-borda);
+  margin-bottom: var(--espacamento-base);
+}
+
+.botao {
+  display: inline-block;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--cor-primaria);
+  background-color: var(--cor-destaque);
+  padding: 0.65rem 1.35rem;
+  border: 2px solid var(--cor-destaque-escura);
+  border-radius: var(--raio-borda);
+  margin-top: var(--espacamento-pequeno);
+  cursor: pointer;
+}
+
+.botao:hover {
+  background-color: #34d399;
+}
+
+.botao-icone {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--cor-superficie);
+  background-color: transparent;
+  padding: 0.2rem 0.55rem;
+  border: 1px solid var(--cor-destaque);
+  border-radius: 0.35rem;
+  margin-left: var(--espacamento-pequeno);
+  cursor: pointer;
+}
+
+/* Passo 7: Estilização dos 4 estados de link na ordem correta LoVe/HAte
+   (a:link -> a:visited -> a:hover -> a:active) */
+a:link {
+  color: #2563eb;
+  text-decoration: underline;
+}
+
+a:visited {
+  color: #7c3aed;
+}
+
+a:hover {
+  color: var(--cor-destaque-escura);
+  text-decoration: none;
+}
+
+a:active {
+  color: var(--cor-alerta);
+}
+
+#cabecalho-principal a:link,
+#cabecalho-principal a:visited {
+  color: #38bdf8;
+}
+
+#cabecalho-principal a:hover,
+#cabecalho-principal a:active {
+  color: var(--cor-destaque);
+}
+
+/* Passo 8: Estilização da lista e da tabela com list-style-type, border-collapse e padding */
+.lista-recursos {
+  list-style-type: square;
+  padding-left: 1.5rem;
+  margin-top: var(--espacamento-pequeno);
+}
+
+.lista-recursos > li {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.tabela-vagas {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: var(--espacamento-pequeno);
+  background-color: var(--cor-superficie);
+}
+
+.tabela-vagas th,
+.tabela-vagas td {
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--cor-borda);
+  text-align: left;
+  font-size: 0.95rem;
+}
+
+.tabela-vagas th {
+  background-color: var(--cor-primaria);
+  color: var(--cor-superficie);
+  font-size: 1rem;
+}
+
+.tabela-vagas tbody tr:nth-child(even) {
+  background-color: #f1f5f9;
+}
+
+/* Estilização dos formulários sem conflito de especificidade */
+fieldset {
+  padding: var(--espacamento-base);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-borda);
+  margin-bottom: var(--espacamento-base);
+}
+
+legend {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--cor-secundaria);
+  padding: 0 0.5rem;
+}
+
+.campo-form {
+  margin-bottom: var(--espacamento-pequeno);
+}
+
+.campo-form label {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.campo-form input,
+.campo-form select {
+  width: 100%;
+  padding: 0.55rem 0.75rem;
+  font-size: 1rem;
+  border: 1px solid var(--cor-borda);
+  border-radius: 0.4rem;
+}
+
+.opcoes-inline {
+  margin-bottom: 0.4rem;
+  font-size: 0.95rem;
+}
+
+/* Desafio Extra (Aula 06): Imagem de capa em card de destaque usando object-fit: cover
+   para evitar distorção mesmo quando a proporção original do banner é widescreen */
+.imagem-capa-destaque {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: var(--raio-borda);
+  border: 1px solid var(--cor-borda);
+  margin-bottom: var(--espacamento-pequeno);
+}
+
+footer {
+  background-color: var(--cor-primaria);
+  color: var(--cor-borda);
+  padding: var(--espacamento-base);
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+footer a:link,
+footer a:visited {
+  color: #38bdf8;
+}

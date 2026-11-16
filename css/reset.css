@@ -1,0 +1,33 @@
+/* ==========================================================================
+   Reset CSS Global (Aula 06 - Passo 1)
+   Aplica box-sizing: border-box em todos os elementos e pseudo-elementos
+   para que padding e border sejam incluídos no cálculo de largura/altura,
+   evitando estouro visual de containers.
+   ========================================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body,
+h1,
+h2,
+h3,
+p,
+ul,
+ol,
+figure,
+fieldset {
+  margin: 0;
+  padding: 0;
+}
+
+img,
+video,
+canvas,
+svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
