@@ -14,13 +14,27 @@
       </p>
     </div>
 
-    <h1>SkillMatch Vagas</h1>
+    <!--
+      Observação de escalabilidade vetorial (Aula 05 - Passo 5):
+      Ao redimensionar a janela do navegador ou aplicar zoom de 200% a 400%, o logotipo e o selo em SVG inline
+      permanecem perfeitamente nítidos sem serrilhamento (aliasing), pois seus elementos (<circle>, <path>, <polygon>)
+      são recalculados matematicamente pelo navegador a partir do sistema de coordenadas definido no atributo viewBox.
+    -->
+    <h1>
+      <svg viewBox="0 0 64 64" width="44" height="44" role="img" aria-labelledby="titulo-svg-logo">
+        <title id="titulo-svg-logo">Logotipo SkillMatch Vagas: Selo de verificação com indicador de 70% de compatibilidade</title>
+        <circle cx="32" cy="32" r="29" fill="#0f172a" stroke="#10b981" stroke-width="4" />
+        <polyline points="20,33 28,41 45,23" fill="none" stroke="#10b981" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+      SkillMatch Vagas
+    </h1>
     <p>Portal inteligente de vagas de emprego que compara as skills exigidas pelas empresas com as competências do candidato e recomenda oportunidades com compatibilidade superior a 70%.</p>
 
     <nav aria-label="Navegação principal">
       <ul>
         <li><a href="#secao-sobre">Como Funciona</a></li>
         <li><a href="#secao-midia">Tour em Vídeo</a></li>
+        <li><a href="#secao-graficos">Painel Gráfico (SVG &amp; Canvas)</a></li>
         <li><a href="#secao-vagas">Quadro de Vagas</a></li>
         <li><a href="#secao-cadastro-vaga">Cadastrar Vaga</a></li>
         <li><a href="#secao-candidatura">Candidatar-se e Testar Match</a></li>
@@ -61,6 +75,44 @@
       </video>
 
       <p><small id="diagnostico-midia">Verificando suporte de codecs no navegador via canPlayType()...</small></p>
+    </section>
+
+    <section id="secao-graficos">
+      <h2>Painel Visual de Compatibilidade (SVG Inline e Canvas 2D)</h2>
+
+      <div>
+        <h3>Selo Oficial de Recomendação (&gt; 70% Match) em SVG Inline</h3>
+        <svg viewBox="0 0 280 90" width="280" height="90" role="img" aria-labelledby="titulo-selo-recomendacao">
+          <title id="titulo-selo-recomendacao">Selo Vaga Recomendada: Compatibilidade de Skills superior a 70%</title>
+          <rect x="4" y="4" width="272" height="82" rx="14" fill="#064e3b" stroke="#10b981" stroke-width="3" />
+          <polygon points="42,22 48,35 62,37 52,47 54,61 42,54 30,61 32,47 22,37 36,35" fill="#34d399" />
+          <text x="80" y="42" fill="#ecfdf5" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="bold">VAGA RECOMENDADA</text>
+          <text x="80" y="64" fill="#a7f3d0" font-family="Segoe UI, Arial, sans-serif" font-size="13">Compatibilidade &gt; 70% das Skills</text>
+        </svg>
+      </div>
+
+      <div>
+        <h3>Gráfico Animado em Canvas 2D: Índice de Match por Vaga</h3>
+        <canvas id="canvas-compatibilidade" width="600" height="240">
+          Gráfico em barras horizontais apresentando o percentual de compatibilidade do candidato em 3 vagas: Desenvolvedor Front-end Júnior (80% - Recomendada, acima da meta de 70%), Engenheiro Front-end Pleno (83% - Recomendada, acima da meta de 70%) e Analista de UI/UX (60% - Abaixo da meta de 70%).
+        </canvas>
+      </div>
+
+      <div>
+        <h3>Desafio Extra: Comparação de Interatividade Hover (SVG DOM vs. Canvas Matemática)</h3>
+        <p>Passe o mouse sobre os dois indicadores circulares abaixo para comparar a detecção de hover no DOM (SVG) e por cálculo geométrico (Canvas):</p>
+        <div>
+          <svg id="svg-hover-demo" viewBox="0 0 180 120" width="180" height="120" role="img" aria-labelledby="titulo-svg-hover">
+            <title id="titulo-svg-hover">Indicador interativo em SVG que muda de cor ao passar o mouse</title>
+            <circle id="svg-circulo-interativo" cx="90" cy="55" r="36" fill="#2563eb" />
+            <text x="90" y="110" text-anchor="middle" fill="#0f172a" font-family="Segoe UI, Arial, sans-serif" font-size="12">SVG (DOM Event)</text>
+          </svg>
+
+          <canvas id="canvas-hover-demo" width="180" height="120">
+            Indicador circular interativo desenhado em Canvas 2D que calcula matematicamente a distância do cursor para mudar de cor no hover.
+          </canvas>
+        </div>
+      </div>
     </section>
 
     <section id="secao-vagas">
@@ -321,6 +373,120 @@
       }
 
       saida.textContent = 'Diagnóstico canPlayType(): WebM="' + suporteWebm + '", MP4="' + suporteMp4 + '" — Formato selecionado pelo navegador: ' + escolhido + '.';
+    })();
+
+    (function iniciarGraficoCanvasEComparacao() {
+      const canvasGrafico = document.getElementById('canvas-compatibilidade');
+      if (canvasGrafico && canvasGrafico.getContext) {
+        const ctx = canvasGrafico.getContext('2d');
+        const dadosVagas = [
+          { nome: 'Front-end Júnior (4/5 skills)', percentual: 80 },
+          { nome: 'Front-end Pleno (5/6 skills)', percentual: 83 },
+          { nome: 'UI/UX & Front-end (3/5 skills)', percentual: 60 }
+        ];
+        let progressoAnimacao = 0;
+
+        function desenharQuadro() {
+          // Uso obrigatório de clearRect() a cada frame para evitar acúmulo visual (Erro 2 da Aula 05)
+          ctx.clearRect(0, 0, canvasGrafico.width, canvasGrafico.height);
+
+          ctx.fillStyle = '#0f172a';
+          ctx.fillRect(0, 0, canvasGrafico.width, canvasGrafico.height);
+
+          const margemEsq = 210;
+          const larguraMaxBarra = 340;
+          const xLinhaCorte70 = margemEsq + (larguraMaxBarra * 0.70);
+
+          dadosVagas.forEach(function(item, indice) {
+            const y = 40 + indice * 62;
+            const valorAtual = Math.min(item.percentual, progressoAnimacao);
+            const larguraBarra = (valorAtual / 100) * larguraMaxBarra;
+
+            ctx.fillStyle = '#e2e8f0';
+            ctx.font = '13px Segoe UI, Arial, sans-serif';
+            ctx.fillText(item.nome, 16, y + 20);
+
+            ctx.fillStyle = '#1e293b';
+            ctx.fillRect(margemEsq, y, larguraMaxBarra, 28);
+
+            // Verde se > 70% (Recomendada), âmbar caso contrário
+            ctx.fillStyle = item.percentual > 70 ? '#10b981' : '#f59e0b';
+            ctx.fillRect(margemEsq, y, larguraBarra, 28);
+
+            ctx.fillStyle = '#ffffff';
+            ctx.font = 'bold 12px Segoe UI, Arial, sans-serif';
+            ctx.fillText(Math.round(valorAtual) + '%', margemEsq + larguraBarra + 8, y + 19);
+          });
+
+          // Linha tracejada demarcando o corte de 70% para recomendação
+          ctx.save();
+          ctx.strokeStyle = '#38bdf8';
+          ctx.lineWidth = 2;
+          ctx.setLineDash([6, 4]);
+          ctx.beginPath();
+          ctx.moveTo(xLinhaCorte70, 20);
+          ctx.lineTo(xLinhaCorte70, 215);
+          ctx.stroke();
+          ctx.fillStyle = '#38bdf8';
+          ctx.font = 'bold 11px Segoe UI, Arial, sans-serif';
+          ctx.fillText('Meta > 70%', xLinhaCorte70 - 28, 15);
+          ctx.restore();
+
+          if (progressoAnimacao < 100) {
+            progressoAnimacao += 1.5;
+            requestAnimationFrame(desenharQuadro);
+          }
+        }
+
+        requestAnimationFrame(desenharQuadro);
+      }
+
+      // Desafio Extra (Aula 05): Comparação de linhas entre hover no SVG (DOM) vs. Canvas (cálculo geométrico)
+      // 1) No SVG: apenas 3 linhas com addEventListener direto no elemento DOM <circle>
+      const svgCirculo = document.getElementById('svg-circulo-interativo');
+      if (svgCirculo) {
+        svgCirculo.addEventListener('mouseenter', function() { svgCirculo.setAttribute('fill', '#10b981'); });
+        svgCirculo.addEventListener('mouseleave', function() { svgCirculo.setAttribute('fill', '#2563eb'); });
+      }
+
+      // 2) No Canvas: requer ~20 linhas para armazenar estado, calcular distância euclidiana do mouse ao centro e redesenhar com clearRect()
+      const canvasHover = document.getElementById('canvas-hover-demo');
+      if (canvasHover && canvasHover.getContext) {
+        const ctxHover = canvasHover.getContext('2d');
+        const cx = 90, cy = 55, raio = 36;
+        let mouseSobreCirculo = false;
+
+        function renderizarCirculoCanvas() {
+          ctxHover.clearRect(0, 0, canvasHover.width, canvasHover.height);
+          ctxHover.beginPath();
+          ctxHover.arc(cx, cy, raio, 0, Math.PI * 2);
+          ctxHover.fillStyle = mouseSobreCirculo ? '#10b981' : '#2563eb';
+          ctxHover.fill();
+          ctxHover.fillStyle = '#0f172a';
+          ctxHover.font = '12px Segoe UI, Arial, sans-serif';
+          ctxHover.textAlign = 'center';
+          ctxHover.fillText('Canvas (Hit-Test)', cx, 110);
+        }
+
+        canvasHover.addEventListener('mousemove', function(evento) {
+          const rect = canvasHover.getBoundingClientRect();
+          const mouseX = evento.clientX - rect.left;
+          const mouseY = evento.clientY - rect.top;
+          const distancia = Math.hypot(mouseX - cx, mouseY - cy);
+          const novoEstado = distancia <= raio;
+          if (novoEstado !== mouseSobreCirculo) {
+            mouseSobreCirculo = novoEstado;
+            renderizarCirculoCanvas();
+          }
+        });
+
+        canvasHover.addEventListener('mouseleave', function() {
+          mouseSobreCirculo = false;
+          renderizarCirculoCanvas();
+        });
+
+        renderizarCirculoCanvas();
+      }
     })();
   </script>
 </body>
