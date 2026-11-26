@@ -418,9 +418,55 @@
       </form>
     </section>
 
-    <section id="resultado" class="card" aria-live="polite">
-      <h2>Resultado da Análise de Compatibilidade e Recomendação (&gt; 70%)</h2>
-      <p>Carregando análise dinâmica de vagas e compatibilidade de skills...</p>
+    <section id="resultado" class="card">
+      <h2>Painel Interativo de Vagas e Recomendação (&gt; 70%)</h2>
+
+      <div class="barra-controles-dom">
+        <div class="campo-form controle-busca">
+          <label for="busca-vagas">Buscar vagas por título, empresa ou skill (atalho: /)</label>
+          <input type="search" id="busca-vagas" name="buscaVagas" placeholder="Ex: Front-end, React, Remoto..." autocomplete="off">
+        </div>
+
+        <div class="campo-form controle-filtro">
+          <label for="filtro-modalidade">Filtrar por modalidade</label>
+          <select id="filtro-modalidade" name="filtroModalidade">
+            <option value="todas">Todas as modalidades</option>
+            <option value="Remoto">100% Remoto</option>
+            <option value="Hibrido">Híbrido</option>
+            <option value="Presencial">Presencial</option>
+          </select>
+        </div>
+
+        <div class="grupo-botoes-estado">
+          <button type="button" id="btn-filtro-recomendadas" class="botao-estado" aria-pressed="false">
+            Somente Recomendadas (&gt; 70%)
+          </button>
+
+          <button type="button" id="btn-painel-detalhes" class="botao-estado" aria-expanded="false" aria-controls="painel-detalhes-match">
+            Como funciona o Match (&gt; 70%)?
+          </button>
+        </div>
+      </div>
+
+      <div id="painel-detalhes-match" class="painel-detalhes" hidden>
+        <h3>Regra de Compatibilidade SkillMatch</h3>
+        <p>
+          O sistema compara as skills do candidato com as skills solicitadas em cada vaga.
+          Vagas com percentual <strong>superior a 70%</strong> recebem o selo de recomendação automática.
+          Use <strong>Tab</strong>, <strong>Enter</strong> ou <strong>Espaço</strong> para interagir pelo teclado e <strong>Escape</strong> (ou clique fora) para fechar este painel.
+        </p>
+      </div>
+
+      <p id="resumo-vagas-dom" class="resumo-painel" aria-live="polite">
+        Carregando resumo das vagas...
+      </p>
+
+      <p id="perfil-ativo-dom" class="perfil-ativo-info"></p>
+
+      <ul id="lista-vagas-dom" class="lista-resultados-dom" aria-label="Lista interativa de vagas analisadas"></ul>
+
+      <h3>Resumo Agrupado por Modalidade de Trabalho (reduce)</h3>
+      <div id="agrupamento-modalidades-dom" class="agrupamento-categorias"></div>
     </section>
   </main>
 
