@@ -662,4 +662,138 @@ footer a:visited {
   padding: var(--espacamento-pequeno) var(--espacamento-base);
 }
 
+/* ==========================================================================
+   Aula 12: Controles de Busca/Filtro, Estado (aria-pressed/aria-expanded) e Foco
+   ========================================================================== */
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+a:focus-visible {
+  outline: 3px solid var(--cor-alerta);
+  outline-offset: 2px;
+}
+
+.barra-controles-dom {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--espacamento-pequeno);
+  align-items: end;
+  background-color: var(--cor-fundo);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-borda);
+  padding: var(--espacamento-base);
+  margin-top: var(--espacamento-pequeno);
+}
+
+.barra-controles-dom .campo-form {
+  margin-bottom: 0;
+}
+
+.grupo-botoes-estado {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.botao-estado {
+  font-size: 0.92rem;
+  font-weight: 700;
+  padding: 0.58rem 0.95rem;
+  border-radius: 0.45rem;
+  border: 2px solid var(--cor-secundaria);
+  background-color: var(--cor-superficie);
+  color: var(--cor-secundaria);
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.botao-estado:hover {
+  background-color: #eff6ff;
+}
+
+.botao-estado[aria-pressed="true"],
+.botao-estado[aria-expanded="true"] {
+  background-color: var(--cor-destaque-escura);
+  border-color: var(--cor-destaque-escura);
+  color: var(--cor-superficie);
+}
+
+.painel-detalhes {
+  background-color: #ecfdf5;
+  border: 2px solid var(--cor-destaque);
+  border-radius: var(--raio-borda);
+  padding: var(--espacamento-pequeno) var(--espacamento-base);
+  margin-top: var(--espacamento-pequeno);
+}
+
+.painel-detalhes h3 {
+  margin-top: 0;
+}
+
+.perfil-ativo-info {
+  font-size: 0.95rem;
+  color: var(--cor-texto-suave);
+  margin-bottom: var(--espacamento-pequeno);
+}
+
+.lista-resultados-dom {
+  list-style: none;
+  padding: 0;
+}
+
+.item-vazio-dom {
+  grid-column: 1 / -1;
+  background-color: #fffbeb;
+  border: 1px dashed var(--cor-alerta);
+  border-radius: var(--raio-borda);
+  padding: var(--espacamento-base);
+  text-align: center;
+  font-weight: 600;
+}
+
+.acoes-card-vaga {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: var(--espacamento-pequeno);
+}
+
+.acoes-card-vaga .btn-aplicar-vaga {
+  margin-top: 0;
+  flex: 1 1 180px;
+}
+
+.btn-salvar-vaga {
+  font-size: 0.9rem;
+  font-weight: 700;
+  padding: 0.55rem 0.9rem;
+  border-radius: 0.45rem;
+  border: 1px solid var(--cor-secundaria);
+  background-color: var(--cor-superficie);
+  color: var(--cor-secundaria);
+  cursor: pointer;
+}
+
+.btn-salvar-vaga[aria-pressed="true"] {
+  background-color: var(--cor-alerta);
+  border-color: #b45309;
+  color: var(--cor-primaria);
+}
+
+.btn-remover-vaga {
+  font-size: 0.9rem;
+  font-weight: 700;
+  padding: 0.55rem 0.9rem;
+  border-radius: 0.45rem;
+  border: 1px solid #b91c1c;
+  background-color: #fef2f2;
+  color: #b91c1c;
+  cursor: pointer;
+}
+
+.btn-remover-vaga:hover {
+  background-color: #b91c1c;
+  color: var(--cor-superficie);
+}
+
 
